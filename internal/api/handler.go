@@ -44,12 +44,19 @@ func SaveSubscriptionHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	subscribed, err := service.Subscribe(address)
+
 	status := "Already Subscribed"
-	if subscribed && err == nil {
+	if subscribed {
 		status = "Subscribed"
 	}
+	var response map[string]string
+	if err != nil {
+		response = map[string]string{"status": err.Error(), "address": address}
 
-	response := map[string]string{"status": status, "address": address}
+	} else {
+		response = map[string]string{"status": status, "address": address}
+	}
+
 	if err := json.NewEncoder(w).Encode(response); err != nil {
 		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
 		log.Printf("error encoding subscription response for address %s: %v", address, err)
