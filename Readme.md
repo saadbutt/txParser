@@ -1,51 +1,66 @@
-Backend Homework - Tx Parser
+# Ethereum Transaction Parser
 
-Goal
-Implement Ethereum blockchain parser that will allow to query transactions for
-subscribed addresses.
-Problem
-Users not able to receive push notifications for incoming/outgoing transactions.
-By Implementing Parser interface we would be able to hook this up to notifications
-service to notify about any incoming/outgoing transactions.
-Limitations
-Use Go Language
-Avoid usage of external libraries
-Use Ethereum JSONRPC to interact with Ethereum Blockchain
-Use memory storage for storing any data (should be easily extendable to
-support any storage in the future)
-Expose public interface for external usage either via command line or http api that
-will include supported list of operations defined in the Parser interface
-type Parser interface {
-// last parsed block
-GetCurrentBlock() int
-// add address to observer
-Subscribe(address string) bool
-// list of inbound or outbound transactions for an address
-GetTransactions(address string) []Transaction
-}
+This project is an Ethereum transaction parser designed to monitor and analyze Ethereum blockchain transactions. It interacts with the Ethereum network to fetch block data and process transactions based on specific criteria.
 
-Backend Homework - Tx Parser 2
-Endpoint
-URL: https://ethereum-rpc.publicnode.com
-Request example
-// Request
-curl -X POST 'https://ethereum-rpc.publicnode.com' --data \
-'{
-"jsonrpc": "2.0",
-"method": "eth_blockNumber",
-"params": [],
-"id": 83
-}'
-// Result
-{
-"id":83,
-"jsonrpc": "2.0",
-"result": "0x4b7" // 1207
-}
+## Features
 
-References
-Ethereum JSON RPC Interface
-Note
-keep it simple
-try to finish the task within 4 hours. We do not track the time spent, this is just
-a guidance. We do not ask for a perfect production ready service# txParser
+- Fetch the latest Ethereum block number.
+- Retrieve detailed information about a specific Ethereum block.
+- Filter transactions by address.
+- Save and manage blockchain data using a mock store for testing purposes.
+- Support for subscription management for Ethereum addresses.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Running Tests](#running-tests)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Installation
+
+To get started, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/yourusername/txParser.git
+cd txParser
+
+# Ethereum Transaction Parser
+
+## Prerequisites
+
+- **Go** (version 1.16 or later)
+- **Access to an Ethereum node** (can be local or through services like Infura or Alchemy)
+
+## Configuration
+
+1. Set up your Ethereum RPC URL in the code or as an environment variable. You can find various Ethereum nodes to connect to [here](https://eth.wiki/en/Nodes).
+2. Update the `EthereumRPCURL` variable in the code with your node's endpoint.
+
+## Usage
+
+### Running the Application
+
+1. Navigate to the root directory of the project.
+2. Run the application:
+
+   ```bash
+   go run cmd/server/main.go or run ./txParser
+## Available Functions
+
+- **GetCurrentBlock**: Retrieves the last parsed block number.
+- **Subscribe**: Subscribes an Ethereum address for transaction updates.
+- **GetTransactions**: Filters transactions based on a specified Ethereum address.
+
+
+
+## Running Tests
+
+To ensure everything is working correctly, run the tests included in the project:
+
+1. Reset the Go module cache (optional):
+
+   ```bash
+   go clean -modcache
+   go test ./...

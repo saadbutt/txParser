@@ -37,7 +37,7 @@ func main() {
 // startBlockProcessingService runs the block fetching and transaction filtering loop
 func startBlockProcessingService(logger *log.Logger) {
 	for {
-		currentBlockNum := service.GetBlockNumber()
+		currentBlockNum, _ := service.GetBlockNumber()
 		if currentBlockNum == "0x0" {
 			logger.Printf("failed to get current block number")
 			latestBlock, _ := service.GetLatestETHBlock()
@@ -56,13 +56,13 @@ func startBlockProcessingService(logger *log.Logger) {
 		if latestBlock >= currentBlockNum {
 			block, err := service.GetEthBlockByNumber(currentBlockNum)
 			if err != nil {
-				logger.Printf("failed to fetch block %d: %v", currentBlockNum, err)
+				logger.Printf("failed to fetch block %s: %v", currentBlockNum, err)
 				time.Sleep(2 * time.Second)
 				continue
 			}
 
 			if err := service.FilterTransactionsByAddress(block.Transactions); err != nil {
-				logger.Printf("failed to filter transactions for block %d: %v", currentBlockNum, err)
+				logger.Printf("failed to filter transactions for block %s: %v", currentBlockNum, err)
 			}
 
 			if err := service.IncrementBlockNumber(currentBlockNum); err != nil {

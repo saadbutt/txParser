@@ -25,7 +25,7 @@ func StartServer() error {
 // CurrentBlockHandler returns the current block number
 func CurrentBlockHandler(w http.ResponseWriter, r *http.Request) {
 	setJSONResponseHeaders(w)
-	response := model.SharedStore().GetCurrentBlock()
+	response, _ := model.SharedStore().GetCurrentBlock()
 
 	if err := json.NewEncoder(w).Encode(response); err != nil {
 		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
@@ -43,9 +43,9 @@ func SaveSubscriptionHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	subscribed := service.Subscribe(address)
+	subscribed, err := service.Subscribe(address)
 	status := "Already Subscribed"
-	if subscribed {
+	if subscribed && err == nil {
 		status = "Subscribed"
 	}
 

@@ -3,6 +3,7 @@ package model
 
 import "sync"
 
+// EthereumRPC holds the RPC URL for connecting to the Ethereum network
 type EthereumRPC struct {
 	rpcURL string
 }
@@ -14,19 +15,21 @@ type JsonRPCResponse struct {
 	Result  Block  `json:"result"`
 }
 
+// Transaction represents an Ethereum transaction
 type Transaction struct {
-	Hash  string
-	From  string
-	To    string
-	Value string
+	Hash  string `json:"hash"`
+	From  string `json:"from"`
+	To    string `json:"to"`
+	Value string `json:"value"`
 }
 
-// Struct for the block result from eth_getBlockByNumber
+// Block represents the structure of an Ethereum block
 type Block struct {
 	Number       string
 	Transactions []Transaction
 }
 
+// BlockStorage is an in-memory storage for block-related data
 type BlockStorage struct {
 	mu           sync.RWMutex
 	currentBlock string          // Latest block number processed by the listener
