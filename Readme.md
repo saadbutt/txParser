@@ -39,7 +39,7 @@ cd txParser
 
  ```bash
 go run cmd/server/main.go
-run ./txParser
+./txParser
   ```
 
 ## Available Functions
