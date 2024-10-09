@@ -63,7 +63,7 @@ http://localhost:8080/transactions?address=0x46340b20830761efd32832A74d7169B29FE
 
 You can view the latest Block using this API endpoint:
  ```bash
-http://localhost:8080/transactions?address=0x46340b20830761efd32832A74d7169B29FEB9758
+http://localhost:8080/currentBlock
   ```
 
 ## Running Tests
