@@ -1,6 +1,6 @@
 # Ethereum Transaction Parser
 
-This project is an Ethereum transaction parser designed to monitor and analyze Ethereum blockchain transactions. It interacts with the Ethereum network to fetch block data and process transactions based on specific criteria.
+Implement Ethereum blockchain parser that will allow to query transactions for subscribed addresses.
 
 ## Features
 
