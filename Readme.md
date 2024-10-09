@@ -29,12 +29,6 @@ cd txParser
 ## Prerequisites
 
 - **Go** (version 1.16 or later)
-- **Access to an Ethereum node** (can be local or through services like Infura or Alchemy)
-
-## Configuration
-
-1. Set up your Ethereum RPC URL in the code or as an environment variable. You can find various Ethereum nodes to connect to [here](https://eth.wiki/en/Nodes).
-2. Update the `EthereumRPCURL` variable in the code with your node's endpoint.
 
 ## Usage
 
@@ -44,7 +38,8 @@ cd txParser
 2. Run the application:
 
  ```bash
-go run cmd/server/main.go or run ./txParser
+go run cmd/server/main.go
+run ./txParser
   ```
 
 ## Available Functions
@@ -61,7 +56,7 @@ To ensure everything is working correctly, run the tests included in the project
 
 1. Reset the Go module cache (optional):
 
-   ```bash
+ ```bash
 go clean -modcache
 go test ./...
-   ```
+  ```
