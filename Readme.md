@@ -15,8 +15,6 @@ This project is an Ethereum transaction parser designed to monitor and analyze E
 - [Installation](#installation)
 - [Usage](#usage)
 - [Running Tests](#running-tests)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
@@ -25,7 +23,7 @@ To get started, clone the repository to your local machine:
 ```bash
 git clone https://github.com/yourusername/txParser.git
 cd txParser
-
+```
 # Ethereum Transaction Parser
 
 ## Prerequisites
@@ -45,8 +43,10 @@ cd txParser
 1. Navigate to the root directory of the project.
 2. Run the application:
 
-   ```bash
-   go run cmd/server/main.go or run ./txParser
+ ```bash
+go run cmd/server/main.go or run ./txParser
+  ```
+
 ## Available Functions
 
 - **GetCurrentBlock**: Retrieves the last parsed block number.
@@ -62,5 +62,6 @@ To ensure everything is working correctly, run the tests included in the project
 1. Reset the Go module cache (optional):
 
    ```bash
-   go clean -modcache
-   go test ./...
+go clean -modcache
+go test ./...
+   ```
