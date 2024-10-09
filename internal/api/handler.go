@@ -6,6 +6,7 @@ import (
 	"ethereum-tx-parser/internal/service"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -27,7 +28,13 @@ func CurrentBlockHandler(w http.ResponseWriter, r *http.Request) {
 	setJSONResponseHeaders(w)
 	response, _ := model.SharedStore().GetCurrentBlock()
 
-	if err := json.NewEncoder(w).Encode(response); err != nil {
+	blockHex := strings.TrimPrefix(response, "0x")
+	blockNumber, err := strconv.ParseInt(blockHex, 16, 64)
+	if err != nil {
+		log.Printf("Error parsing hex block number: %v", err)
+	}
+
+	if err := json.NewEncoder(w).Encode(blockNumber); err != nil {
 		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
 		log.Printf("error encoding current block response: %v", err)
 	}
